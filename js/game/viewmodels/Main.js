@@ -1,4 +1,4 @@
-define(['knockout', 'pager', 'game/models/Game'], function(ko, pager, Game) {
+define(['knockout', 'game/models/Game'], function(ko, Game) {
     return function MainViewModel() {
     	var self = this;
     	self.game = new Game();
