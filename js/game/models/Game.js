@@ -22,13 +22,13 @@ define(['jquery', 'knockout', 'amplify', 'game/models/Player'], function($, ko, 
         
         
         ko.utils.arrayForEach(JSON.parse(amplify.store("sorteo_players")), function(player) {
-            self.players.push(new Player(player.name, player.checked))
+            self.players.push(new Player(player.name, player.checked));
         });
 
         ko.utils.arrayForEach(JSON.parse(amplify.store("sorteo_random")), function(player) {
             ko.utils.arrayForEach(self.players(), function(item) {
                 if (item.name() == player.name) {
-                    self.randomizedOrder.push(item)                    
+                    self.randomizedOrder.push(item);  
                 }
             });
         });
@@ -58,7 +58,7 @@ define(['jquery', 'knockout', 'amplify', 'game/models/Player'], function($, ko, 
 
         self.randomize = function() {
             var jsonPlayers = ko.toJSON(self.players());
-            var shuffled = self.shuffle(self.selectedPlayers())
+            var shuffled = self.shuffle(self.selectedPlayers());
             self.randomizedOrder(shuffled);
             var jsonRandom = ko.toJSON(self.randomizedOrder()); 
             console.log(jsonPlayers);           

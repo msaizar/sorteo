@@ -4,7 +4,6 @@ define(['knockout', 'pager', 'game/models/Game'], function(ko, pager, Game) {
     	self.game = new Game();
         	
     	self.playersSelected = function() {
-            pager.navigate('#!/random');
     		self.game.randomize();
     	}
         

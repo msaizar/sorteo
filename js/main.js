@@ -10,10 +10,6 @@ requirejs.config({
         game: '../game',
     },
     shim: {
-        'hashchange': {
-            deps: ['jquery'],
-            exports: 'jQuery.fn.hashchange.'
-        },
         "amplify": {
             deps: ["jquery"],
             exports: "amplify"
@@ -21,15 +17,12 @@ requirejs.config({
     },
 });
 
-requirejs(['knockout', 'pager', 'game/viewmodels/Main'],
-function   (ko, pager, MainViewModel) {
+requirejs(['knockout', 'game/viewmodels/Main'],
+function   (ko, MainViewModel) {
     //jQuery, canvas and the app/sub module are all
     //loaded and can be used here now.
 
-    pager.Href.hash = '#!/';    
    	var MainViewModelObject = new MainViewModel();
-    pager.extendWithPage(MainViewModelObject);
-   	ko.applyBindings(MainViewModelObject)
-    pager.start();
+   	ko.applyBindings(MainViewModelObject);
 
 });
