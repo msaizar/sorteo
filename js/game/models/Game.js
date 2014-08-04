@@ -64,7 +64,6 @@ define(['jquery', 'knockout', 'amplify', 'game/models/Player'], function($, ko, 
             var shuffled = self.shuffle(self.selectedPlayers());
             self.randomizedOrder(shuffled);
             var jsonRandom = ko.toJSON(self.randomizedOrder()); 
-            console.log(jsonPlayers);           
             amplify.store("sorteo_players", jsonPlayers);
             amplify.store("sorteo_random", jsonRandom);
             
