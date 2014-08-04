@@ -14,13 +14,23 @@ define(['jquery', 'knockout', 'amplify', 'game/models/Player'], function($, ko, 
             });
     	});
         
+    	self.selectedRandomizedPlayers = ko.computed(function() {
+            return ko.utils.arrayFilter(self.randomizedOrder(), function(item) {
+    			return (item.checked() == true);
+            });
+    	});
+        
         
         ko.utils.arrayForEach(JSON.parse(amplify.store("sorteo_players")), function(player) {
             self.players.push(new Player(player.name, player.checked))
         });
 
         ko.utils.arrayForEach(JSON.parse(amplify.store("sorteo_random")), function(player) {
-            self.randomizedOrder.push(new Player(player.name, player.checked))
+            ko.utils.arrayForEach(self.players(), function(item) {
+                if (item.name() == player.name) {
+                    self.randomizedOrder.push(item)                    
+                }
+            });
         });
 
         self.shuffle = function(array) {

@@ -32,7 +32,7 @@
 		<div class="container">
             
             
-			<div style="display:none;" id="selectPlayerNames" data-bind="page: {id: 'start'}">
+			<div id="selectPlayerNames">
                 <div class="page-header">
 				    <h1>Enter player names</h1>
                 </div>
@@ -68,20 +68,24 @@
 				
 			</div>
 
-			<div style="display:none;" id="league" data-bind="page: {id: 'random'}">
+			<div id="league" data-bind="visible: game.selectedRandomizedPlayers().length > 0">
 				
 				<div class="row">
                     <div class="col-sm-12">		                    
-    					<h3>Resultado</h3>
+    					<h3>Result</h3>
     					<table class="table table-striped">
     						<thead>
-    							<tr>
+    							<tr>    								
+                                    <td>Position</td>						
     								<td>Player</td>						
     							</tr>
     						</thead>
-    						<tbody data-bind="foreach: game.randomizedOrder()">
+    						<tbody data-bind="foreach: game.selectedRandomizedPlayers()">
     							<tr>
+    								<td data-bind="text: ($index() + 1)"></td>
+                                    
     								<td data-bind="text: name"></td>
+                                    
     							</tr>
 
     						</tbody>
